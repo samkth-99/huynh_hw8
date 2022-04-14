@@ -1,44 +1,27 @@
-// Character list. Each house has a name and a code
-const houses = [
-  {
-    code: "ST",
-    name: "Stark"
-  },
-  {
-    code: "LA",
-    name: "Lannister"
-  },
-  {
-    code: "BA",
-    name: "Baratheon"
-  },
-  {
-    code: "TA",
-    name: "Targaryen"
-  }
-];
+/*
+Display list of paintings
+*/
 
-// Return an array of characters belonging to a house
-const getCharacters = houseCode => {
-  switch (houseCode) {
-    case "ST":
-      return ["Eddard", "Catelyn", "Robb", "Sansa", "Arya", "Jon Snow"];
-    case "LA":
-      return ["Tywin", "Cersei", "Jaime", "Tyrion"];
-    case "BA":
-      return ["Robert", "Stannis", "Renly"];
-    case "TA":
-      return ["Aerys", "Daenerys", "Viserys"];
-    default:
-      return []; // Empty array
-  }
-}
-
-document.getElementById("house").addEventListener("change", e => {
-  console.log("House code: " + e.target.value);
+fetch(
+  "https://raw.githubusercontent.com/bpesquet/thejsway/master/resources/paintings.json"
+)
+  .then(response => response.json()) // access and return response from the JSON content
+  .then(paintings => {
+    const paintingsElement = document.getElementById("paintings"); //get element from .html page
+    paintings.forEach(painting => { //create rows for table in HTML page, then append data 
+      const paintingElement = document.createElement("tr");
+      paintingElement.innerHTML = `<td>  
+        ${painting.name}
+        </td>
+        <td>
+        ${painting.year}
+        </td>
+        <td>
+        ${painting.artist}
+        </td>`;
+      paintingsElement.appendChild(paintingElement);
+    });
+  })
+  .catch(err => {
+    console.error(err.message); //catch and display error in console
   });
-
-// Show the character list based on selected house
-const characterElement = document.getElementById("characters");
-characterElement.addEventListener("change", getCharacters);
-

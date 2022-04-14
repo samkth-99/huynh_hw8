@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visited Countries</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+</head>
+<body>
+    <h2>Which one is the strongest?</h2>
+    <form>
+        <p>
+            <label for="name">Your name</label>:
+            <input type="text" name="name" id="name" required>
+            <br> 
+            <br>
+            <label for="email">Your email</label>:
+            <input type="text" email="email" id="email" required>
+        </p>
+        <p>Payment Type</p>
+        <p>
+            <input type="radio" name="payment" id="cash" value="CASH" checked>
+            <label for="cash">Cash</label>
+            <br>
+            <input type="radio" name="payment" id="creditcash" value="CREDIT">
+            <label for="creditcash">Credit Cash</label>
+            <br>
+            <input type="radio" name="payment" id="applepay" value="APPLE">
+            <label for="applepay">Apple Pay</label>
+            <br>
+            <input type="radio" name="payment" id="ggpay" value="GOOGLE">
+            <label for="ggpay">Google Pay</label>
+            <br>
+        </p>
+        <p>
+            <input type="checkbox" name="signup" id="signup">
+            <label for="signup">Sign me up for special promotions</label>
+        </p>
+        <p>
+            <label for="location">Preferred Location</label>:
+            <select name="location" id="location">
+            <option value="LA" selected>Los Angeles</option>
+            <option value="OC">Orange County</option>
+            <option value="RS">Riverside</option>
+            <option value="SD">San Diego</option>
+            </select>
+            
+        </p>
+        <input type="submit" value="Submit">
+        <button id="cancel">Cancel</button>
+    </form>
+    <p id="result"></p>
+    <script src="../js/ex4.js"></script>
+</body>
+</html>

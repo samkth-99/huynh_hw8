@@ -1,36 +1,33 @@
-// Country list
-const countryList = [
-    "Afghanistan",
-    "Albania",
-    "Algeria",
-    "Andorra",
-    "Angola",
-    "Anguilla",
-    "Antarctica",
-    "Antigua-and-Barbuda",
-    "Argentina",
-    "Armenia",
-    "Aruba",
-    "Australia",
-    "Autria",
-    "Azerbaïjan"
-  ];
-  
-//list of available options// 
-var n= countryList.length; //length of country list  
-function autoComplete(value) { 
-   document.getElementById('country').innerHTML = ''; 
-    //setting country list empty at the start of function
-    l=value.length; 
-for (var i = 0; i<n; i++) { 
-    if(((countryList[i].toLowerCase()).indexOf(value.toLowerCase()))>-1) //check if input string is existing in countryList[i] string
-    {
-        var node = document.createElement("option"); //create element tag option 
-        var val = document.createTextNode(countryList[i]); //create text content for this tag 
-         node.appendChild(val); //append text to option tags 
+/*
+GitHub user info
+*/
 
-         document.getElementById("country").appendChild(node); //creating and appending new elements in country list
-         
-   }
-}
-}
+const formElement = document.querySelector("form");
+formElement.addEventListener("submit", e => {
+  e.preventDefault();
+  const login = formElement.elements.login.value;
+  fetch(`https://api.github.com/users/${login}`)
+    .then(response => response.json())
+    .then(user => {
+      // Create user info and display on HTML page
+      const pictureElement = document.createElement("img");
+      pictureElement.src = user.avatar_url;
+      pictureElement.style.height = "150px";
+      pictureElement.style.width = "150px";
+      const nameElement = document.createElement("div");
+      nameElement.textContent = user.name;
+      nameElement.style.fontSize = "20px";
+      const websiteElement = document.createElement("a");
+      websiteElement.href = user.blog;
+      websiteElement.textContent = websiteElement.href;
+      // Add info on the page
+      const infoElement = document.getElementById("info");
+      infoElement.innerHTML = ""; // Remove previous user info
+      infoElement.appendChild(pictureElement);
+      infoElement.appendChild(nameElement);
+      infoElement.appendChild(websiteElement);
+    })
+    .catch(err => {
+      console.error(err.message);
+    });
+});
